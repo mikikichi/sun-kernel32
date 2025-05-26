@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include "../libs/io.h"
+
+unsigned int idtinc = 0;
 
 typedef struct {
     uint16_t isr_low;
@@ -45,6 +48,10 @@ void idt_init() {
         vectors[vector] = true;
     }
 
+    idtinc = 1;
+
     __asm__ volatile ("lidt %0" : : "m"(idtr));
+    outb(0x21, 0xFF);
+    outb(0xA1, 0xFF);
     __asm__ volatile ("sti");
 }

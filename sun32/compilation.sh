@@ -14,6 +14,8 @@ i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c paging/paging.c -o compiled/paging.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c idt/idt.c -o compiled/idt.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c idt/isr.c -o compiled/isr.o
+i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/programs/serialterm.c -o compiled/serialterm.o
+i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/programs/fail.c -o compiled/fail.o
 nasm -f elf32 boot.s -o compiled/boot.o
 nasm -f elf32 mheaders.s -o compiled/mheaders.o
 nasm -f elf32 gdt/gdt.s -o compiled/gdtasm.o

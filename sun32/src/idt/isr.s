@@ -1,58 +1,32 @@
-; exception handling macros for 32-bit x86
-
 %macro isr_err_stub 1
 isr_stub_%+%1:
-    push eax
-    push ebx
-    push ecx
-    push edx
-    push esi
-    push edi
-    push ebp
-
-    push dword %1        ; push exception number as argument
+    cli
+    pusha
     call exception_handler
-    add esp, 4           ; clean up stack
-
-    pop ebp
-    pop edi
-    pop esi
-    pop edx
-    pop ecx
-    pop ebx
-    pop eax
-
+    popa
+    sti
     iret
 %endmacro
-
+; if writing for 64-bit, use iretq instead
 %macro isr_no_err_stub 1
 isr_stub_%+%1:
-    push eax
-    push ebx
-    push ecx
-    push edx
-    push esi
-    push edi
-    push ebp
-
-    push dword %1
+    cli
+    pusha
     call exception_handler
-    add esp, 4
-
-    pop ebp
-    pop edi
-    pop esi
-    pop edx
-    pop ecx
-    pop ebx
-    pop eax
-
+    popa
+    sti
     iret
 %endmacro
 
-; exception handlers
-extern exception_handler
+global isr_stub_table
+isr_stub_table:
+%assign i 0 
+%rep    32 
+    dd isr_stub_%+i ; use DQ instead if targeting 64-bit
+%assign i i+1 
+%endrep
 
+extern exception_handler
 isr_no_err_stub 0
 isr_no_err_stub 1
 isr_no_err_stub 2
@@ -85,20 +59,3 @@ isr_no_err_stub 28
 isr_no_err_stub 29
 isr_err_stub    30
 isr_no_err_stub 31
-
-%assign i 32
-%rep 224
-    isr_no_err_stub i
-%assign i i+1
-%endrep
-
-
-section .data
-; stub table
-global isr_stub_table
-isr_stub_table:
-%assign i 0
-%rep 256
-    dd isr_stub_%+ i
-%assign i i+1
-%endrep

@@ -1,5 +1,7 @@
 section .text
 
+pageinc: db 0
+
 global loadPageDirectory
 loadPageDirectory:
     push ebp

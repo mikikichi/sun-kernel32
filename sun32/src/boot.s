@@ -11,6 +11,5 @@ global _start ; making start global
 
 section .text   ; where code actually goes - NEVER put it in BSS!!!!
 _start: ; start function
-        cli
         mov esp, stack_end  ; set up the stack
         call kernel_main

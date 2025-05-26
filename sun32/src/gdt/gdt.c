@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-unsigned int gdtinit = 0;
+unsigned int gdtinc = 0;
 
 struct gdt_entry {
     unsigned short limit_low;
@@ -56,5 +56,5 @@ void gdt_setup() {
 
     gdt_flush();
 
-    gdtinit = 1;
+    gdtinc = 1;
 }
