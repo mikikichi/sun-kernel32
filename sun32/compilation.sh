@@ -7,7 +7,7 @@ i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c libs/io.c -o compiled/io.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c gdt/gdt.c -o compiled/gdt.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/terminal.c -o compiled/terminal.o
-i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/programs/exit.c -o compiled/exit.o
+i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c exit.c -o exit.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/programs/version.c -o compiled/version.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c libs/string.c -o compiled/string.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c libs/keyboard.c -o compiled/keyboard.o
@@ -16,6 +16,8 @@ i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c idt/isr.c -o compiled/isr.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/programs/serialterm.c -o compiled/serialterm.o
 i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c terminal/programs/fail.c -o compiled/fail.o
+i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c exception/exception.c -o compiled/exception.o
+i686-elf-gcc -I ~/opt/cross/lib/gcc/i686-elf/15.1.0/include -ffreestanding -Wall -Werror -m32 -nostdlib -nostdinc -fno-pie -fno-pic -fno-stack-protector -mno-red-zone -c exception/exceptionhandler.c -o compiled/exceptionhandler.o
 nasm -f elf32 boot.s -o compiled/boot.o
 nasm -f elf32 mheaders.s -o compiled/mheaders.o
 nasm -f elf32 gdt/gdt.s -o compiled/gdtasm.o

@@ -8,7 +8,7 @@
 #include "terminal/terminal.h"
 #include "paging/paging.h"
 #include "idt/idt.h"
-#include "terminal/programs/exit.h"
+#include "exit.h"
 #include "libs/serial.h"
 
 extern unsigned int gdtinc;

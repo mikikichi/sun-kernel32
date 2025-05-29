@@ -3,10 +3,11 @@
 #include "../libs/log.h"
 #include "../libs/keyboard.h"
 #include "../libs/strings.h"
-#include "programs/exit.h"
+#include "../exit.h"
 #include "programs/version.h"
 #include "programs/serialterm.h"
 #include "programs/fail.h"
+#include "../exception/exceptionhandler.h"
 
 void terminal() {
     begin("Terminal began\n");
@@ -37,6 +38,8 @@ void terminal() {
                 serial();
         } else if(strcmp(input, "fail") == 0) {
                 fail();
+        } else if(strcmp(input, "excp") == 0) {
+                exception(2);
         } else if(strcmp(input, "help") == 0) {
             printf("'exit' - exits the shell and halts the kernel.\n");
             printf("'hello' - prints 'Hello, World!' to the screen.\n");
